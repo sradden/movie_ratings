@@ -1,16 +1,13 @@
 package uk.co.newday.solutions
 
-import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.sql.functions.split
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import uk.co.newday.settings.Configurable
 
 object Exercise1Candidate {
 
-  // specifying an empty conf here allows us to supply values at runtime
-  val sc = new SparkContext(new SparkConf())
   //Please load movies and ratings csv's in output dataframes.
-  private [this] val spark = SparkSession.builder().config("spark.master", "local").getOrCreate()
+  private [this] lazy val spark = SparkSession.builder().config("spark.master", "local").getOrCreate()
   import spark.implicits._
 
   private case class Movie (movieId:Int, title:String, genre:String)
